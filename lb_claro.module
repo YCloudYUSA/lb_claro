@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file
+ * Hooks for LB Claro module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Asset\AttachedAssetsInterface;
+use Drupal\layout_builder\Form\OverridesEntityForm;
+
+/**
+ * Implements hook_form_alter().
+ */
+function lb_claro_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_state->getFormObject() instanceof OverridesEntityForm) {
+    $form['#attached']['library'][] = 'lb_claro/layout_builder';
+    $form['#attached']['library'][] = 'claro/claro.drupal.dialog';
+    $form['#attached']['library'][] = 'claro/media_library.theme';
+    $form['#attached']['library'][] = 'lb_claro/off_canvas';
+    $form['#attached']['library'][] = 'lb_claro/media_library';
+    $form['#attached']['library'][] = 'lb_claro/entity_forms';
+  }
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function lb_claro_css_alter(&$css, AttachedAssetsInterface $assets) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  $stable_theme_css = drupal_get_path('theme', 'stable') . '/css';
+
+  // Only target layout builder specific pages.
+  if (preg_match('/^(layout_builder\.|^overrides\.([^.]+\.)?)/', $route_name)) {
+    // Remove very specific CSS files that this module is overriding.
+    unset($css[$stable_theme_css . '/layout_builder/layout-builder.css']);
+    unset($css[$stable_theme_css . '/core/dialog/off-canvas.reset.css']);
+    unset($css[$stable_theme_css . '/core/dialog/off-canvas.base.css']);
+    unset($css[$stable_theme_css . '/core/dialog/off-canvas.table.css']);
+    unset($css[$stable_theme_css . '/core/dialog/off-canvas.form.css']);
+    unset($css[$stable_theme_css . '/core/dialog/off-canvas.button.css']);
+    unset($css['assets/vendor/jquery.ui/themes/base/dialog.cs']);
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function lb_claro_theme_registry_alter(&$theme_registry) {
+  $lb_claro_path = drupal_get_path('module', 'lb_claro') . '/templates/media-library';
+
+  // Add media-library templates directly copied from Claro.
+  $theme_registry['views_view__media_library__widget'] = $theme_registry['views_view'];
+  $theme_registry['views_view__media_library__widget']['template'] = 'views-view--media-library';
+  $theme_registry['views_view__media_library__widget']['path'] = $lb_claro_path;
+
+  $theme_registry['views_view__media_library__widget_table'] = $theme_registry['views_view'];
+  $theme_registry['views_view__media_library__widget_table']['template'] = 'views-view--media-library';
+  $theme_registry['views_view__media_library__widget_table']['path'] = $lb_claro_path;
+
+  $theme_registry['views_view_unformatted__media_library'] = $theme_registry['views_view_unformatted'];
+  $theme_registry['views_view_unformatted__media_library']['template'] = 'views-view-unformatted--media-library';
+  $theme_registry['views_view_unformatted__media_library']['path'] = $lb_claro_path;
+
+  $theme_registry['media_library_wrapper']['template'] = 'media-library-wrapper';
+  $theme_registry['media_library_wrapper']['path'] = $lb_claro_path;
+
+  $theme_registry['container__media_library_content'] = $theme_registry['container'];
+  $theme_registry['container__media_library_content']['template'] = 'container--media-library-content';
+  $theme_registry['container__media_library_content']['path'] = $lb_claro_path;
+
+  $theme_registry['media__media_library']['template'] = 'media--media-library';
+  $theme_registry['media__media_library']['path'] = $lb_claro_path;
+}
