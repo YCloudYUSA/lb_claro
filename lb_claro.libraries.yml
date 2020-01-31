@@ -1,0 +1,19 @@
+layout_builder:
+  css:
+    theme:
+      css/layout-builder.css: {}
+
+off_canvas:
+  css:
+    theme:
+      css/off-canvas.css: {}
+
+media_library:
+  css:
+    theme:
+      css/media-library.css: {}
+
+entity_forms:
+  css:
+    theme:
+      css/entity-forms.css: {}

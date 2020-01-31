@@ -1,0 +1,286 @@
+/**
+ * @file
+ * Styles for making layout builder look more like Claro.
+ */
+
+.layout-builder__add-section {
+  background-color: #fff;
+  width: 100%;
+  outline: 2px dotted #e6ecf8;
+  padding: 1.5em 0;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+.layout-builder__link {
+  color: #0036b1;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  border-bottom: 0;
+  padding: 0.75rem 1.5rem;
+}
+
+.layout-builder__link--add {
+  padding: 0.75rem 2rem;
+}
+
+.layout-builder__link--configure {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.889rem;
+}
+
+.layout-builder__link--remove {
+  position: relative;
+  background: url('/core/misc/icons/bebebe/ex.svg') transparent center center / 16px 16px no-repeat;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-indent: -9999px;
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.889rem;
+}
+
+.layout-builder__link--remove:hover {
+  background-image: url('/core/misc/icons/787878/ex.svg');
+}
+
+.layout-builder__link:hover,
+.layout-builder__link:active,
+.layout-builder__link:focus {
+  border-bottom-style: none;
+  background-color: #e6ecf8;
+}
+
+.layout-builder__layout {
+  margin-top: 1em;
+}
+
+.layout-builder__section {
+  margin-bottom: 1.5em;
+  outline: 2px dotted #e6ecf8;
+}
+
+.layout-builder__section .ui-sortable-helper {
+  background-color: #fff;
+  outline: 2px solid #f7f7f7;
+}
+
+.layout-builder__section .ui-state-drop {
+  background-color: #ffd;
+  outline: 2px dotted #fedb60;
+  margin: 20px;
+  padding: 30px;
+}
+
+.layout-builder__add-block {
+  outline: 2px dotted #0036b1;
+  outline-offset: -2px;
+  background-color: #f3f4f9;
+  padding: 1.5em 0;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.layout-builder .layout-builder-block [tabindex='-1'] {
+  pointer-events: none;
+}
+
+.layout-builder__message .messages {
+  background-repeat: no-repeat;
+}
+
+.layout-builder__message--defaults .messages {
+  background-image: url('../../../../misc/icons/73b355/globe.svg');
+}
+
+.layout-builder__message--overrides .messages {
+  background-image: url('../../../../misc/icons/73b355/location.svg');
+}
+
+/* @todo Remove Umami specific styling in https://www.drupal.org/node/3043228. */
+.layout-builder__message .messages .messages__content {
+  background: none;
+}
+
+.layout-builder-block__content-preview-placeholder-label {
+  margin: 0;
+  line-height: 1.4;
+  font-size: 1em;
+  text-align: center;
+  padding: 1em;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.layout-builder--content-preview-disabled .layout-builder-block {
+  margin: 0;
+}
+
+#drupal-off-canvas .layout-selection li {
+  display: block;
+  padding-bottom: 1em;
+}
+
+#drupal-off-canvas .layout-selection li a {
+  display: block;
+  padding-top: .55em;
+}
+
+#drupal-off-canvas .inline-block-create-button {
+  display: block;
+  padding: 24px;
+  padding-left: 44px;
+  font-size: 16px;
+  color: #eee;
+  border-bottom: 1px solid #333;
+  background: url('/core/misc/icons/bebebe/plus.svg') transparent 16px no-repeat;
+}
+
+#drupal-off-canvas .inline-block-create-button,
+#drupal-off-canvas .inline-block-list__item {
+  margin: 0 -20px;
+  background-color: #444;
+}
+
+#drupal-off-canvas .inline-block-create-button:hover,
+#drupal-off-canvas .inline-block-list__item:hover {
+  background-color: #333;
+}
+
+#drupal-off-canvas .inline-block-list {
+  margin-bottom: 15px;
+}
+
+#drupal-off-canvas .inline-block-list__item {
+  display: block;
+  padding: 15px 0 15px 25px;
+}
+
+.layout-builder__add-section.is-layout-builder-highlighted {
+  margin-bottom: calc(1.5em - 8px);
+  outline: none;
+}
+
+.layout-builder__layout.is-layout-builder-highlighted,
+.layout-builder-block.is-layout-builder-highlighted,
+.layout-builder__add-block.is-layout-builder-highlighted {
+  margin: -4px -2px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Highlight the active block in the Move Block dialog. */
+#drupal-off-canvas .layout-builder-components-table__block-label--current {
+  border-left: solid 5px;
+  padding-left: 17px;
+}
+
+/**
+ * @todo remove in https://www.drupal.org/project/drupal/issues/3042127
+ * This rule ensures the row weight dropdowns in the Move Block dialog
+ * maintain the background color of their container when they are hovered
+ * over or are inside the active row.
+*/
+#drupal-off-canvas .layout-builder-components-table__row .form-item {
+  background-color: transparent;
+}
+
+.layout-builder__region-label,
+.layout-builder__section-label {
+  display: none;
+}
+
+.layout-builder--move-blocks-active .layout-builder__region-label {
+  display: block;
+}
+
+.layout-builder--move-blocks-active .layout-builder__section-label {
+  display: inline;
+}
+
+.layout__region-info {
+  padding: .5em;
+  text-align: left;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/* Highlight the name of each layout. */
+.layout-builder--content-preview-disabled [data-layout-label] {
+  position: relative;
+}
+
+.layout-builder--content-preview-disabled [data-layout-label]::before {
+  content: attr(data-layout-label);
+  position: absolute;
+  z-index: 11;
+  top: 0;
+  right: 0;
+  padding: .5rem 1.5rem;
+  color: #fff;
+  background-color: #13589a;
+  box-shadow: 0 0.125rem 0.125rem -0.125rem #111;
+}
+
+/**
+ * Fix off-canvas hidden buttons appearing:
+ * https://www.drupal.org/project/drupal/issues/3070375.
+*/
+#drupal-off-canvas .js-hide {
+  display: none !important;
+}
+
+/* Some basic styling on the content moderation controls. */
+.node-layout-builder-form .field--name-moderation-state > .form__wrapper {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+}
+
+.node-layout-builder-form .field--name-moderation-state > .form__wrapper .form__item {
+  padding-right: 20px;
+  margin-bottom: 0;
+  border: 0;
+}
+
+.node-layout-builder-form .form__item--revision-log-0-value {
+  margin-bottom: 0;
+  border: 0;
+}
+
+.node-layout-builder-form .form__item--revision-log-0-value textarea {
+  height: 80px;
+}
+
+.node-layout-builder-form .form__item--toggle-content-preview {
+  margin-top: 10px;
+}
+
+/* Improve display of vertical tabs. */
+.node-layout-builder-form .form__item--vertical-tabs {
+  margin-top: 1.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.node-layout-builder-form .vertical-tabs,
+.node-layout-builder-form .vertical-tabs__menu,
+.node-layout-builder-form .vertical-tabs__menu-item {
+  border: 0;
+}
+
+.node-layout-builder-form .vertical-tabs__pane {
+  padding: .5rem;
+}
+
+.node-layout-builder-form .vertical-tabs .form__item {
+  clear: none;
+}
+
+/* Dialog fixes */
+.ui-dialog:not(.ui-dialog-off-canvas) .ui-icon.ui-icon-closethick {
+  height: 16px;
+  width: 16px;
+}
+
+.ui-autocomplete {
+  background-color: #fff;
+}

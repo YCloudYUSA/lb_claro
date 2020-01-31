@@ -1,0 +1,99 @@
+/**
+ * @file
+ * Styles for making the off-canvas media library look like Claro.
+ */
+
+.ui-dialog {
+  color: #222330;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.media-library-content .js-click-to-select-trigger {
+  overflow: hidden;
+  height: 100%;
+  cursor: pointer;
+}
+
+.media-library-content .js-click-to-select-checkbox {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  left: 16px;
+  display: block;
+}
+
+.media-library-content .media-library-item__preview > div {
+  overflow: hidden;
+  text-align: center;
+  background-color: #ebebeb;
+}
+
+.media-library-content .media-library-item__preview img {
+  height: 180px;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center center;
+  object-position: center center;
+  text-align: center;
+}
+
+.media-library-content .media-library-item__attributes {
+  max-height: 34px;
+  bottom: 10px;
+}
+
+.media-library-content .views-exposed-form {
+  margin-top: 1rem;
+  display: flex;
+}
+
+.media-library-content .views-exposed-form .form__item {
+  margin-right: .5rem;
+}
+
+.media-library-content .views-exposed-form .button {
+  margin-top: 1.6rem;
+  margin-bottom: 0;
+}
+
+.media-library-content .js-pager__items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 1rem 0;
+  list-style: none;
+  text-align: center;
+  font-weight: bold;
+}
+
+.media-library-content .js-pager__items li {
+  display: inline-block;
+  margin-right: 0.25rem;
+  margin-left: 0.25rem;
+  vertical-align: top;
+}
+
+.media-library-widget-modal .js-media-library-add-form-added-media {
+  list-style: none;
+}
+
+/* Off canvas tweaks */
+.ui-dialog-off-canvas .field--widget-media-library-widget .js-media-library-widget-toggle-weight {
+  display: none;
+}
+
+.ui-dialog-off-canvas .field--widget-media-library-widget .js-media-library-item > article {
+  position: relative;
+}
+
+.ui-dialog-off-canvas .field--widget-media-library-widget .media-library-item__attributes {
+  color: #eee;
+  background-color: #333;
+  max-height: 34px;
+  bottom: 2px;
+}
+
+.ui-dialog-off-canvas .field--widget-media-library-widget .js-media-library-item .button {
+  margin-top: 0;
+}
