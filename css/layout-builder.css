@@ -122,7 +122,16 @@
 
 #drupal-off-canvas .layout-selection li a {
   display: block;
-  padding-top: .55em;
+}
+
+#drupal-off-canvas .layout-selection li a svg {
+  display: inline-block;
+  margin-right: .5rem;
+  vertical-align: middle;
+}
+
+#drupal-off-canvas .layout-selection li a div {
+  display: inline-block;
 }
 
 #drupal-off-canvas .inline-block-create-button {

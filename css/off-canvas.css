@@ -35,6 +35,7 @@
 
 .ui-dialog.ui-dialog-off-canvas .ui-dialog-title {
   font-family: inherit;
+  float: none;
 }
 
 .ui-dialog-off-canvas {
@@ -107,7 +108,8 @@
 
 #drupal-off-canvas input[type="text"],
 #drupal-off-canvas input[type="search"],
-#drupal-off-canvas select {
+#drupal-off-canvas select,
+#drupal-off-canvas textarea {
   background-color: #fff;
   color: #222330;
   -webkit-appearance: none;
