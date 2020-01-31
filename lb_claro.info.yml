@@ -1,0 +1,6 @@
+name: Layout Builder Claro
+type: module
+description: Attemps to match Layout Builder styles with Claro admin theme.
+package: Other
+core: 8.x
+php: 7.3
