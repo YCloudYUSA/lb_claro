@@ -101,6 +101,13 @@
 .layout-builder__add-section .ajax-progress-throbber .throbber,
 .layout-builder__add-block .ajax-progress-throbber .throbber {
   background-image: url('../images/spinner-ltr.gif');
+  background-position: -11px -1px;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  padding: 0;
 }
 
 [dir="rtl"] .layout-builder__add-section .ajax-progress-throbber .throbber,
