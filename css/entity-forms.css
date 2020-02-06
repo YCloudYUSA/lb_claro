@@ -124,16 +124,23 @@
 
 .node-layout-builder-form > .form-actions input[type="text"],
 .node-layout-builder-form > .field--name-moderation-state input[type="text"],
+.node-layout-builder-form .vertical-tabs input[type="text"],
 .ui-dialog input[type="text"],
+.ui-dialog input[type="date"],
+.ui-dialog input[type="search"],
+.ui-dialog input[type="file"],
+.ui-dialog input[type="email"],
+.ui-dialog input[type="tel"],
+.ui-dialog input[type="number"],
+.ui-dialog input[type="time"],
 .node-layout-builder-form > .form-actions select,
 .node-layout-builder-form > .field--name-moderation-state select,
+.node-layout-builder-form .vertical-tabs select,
 .ui-dialog select,
 .node-layout-builder-form > .form-actions textarea,
 .node-layout-builder-form > .field--name-moderation-state textarea,
-.ui-dialog textarea,
 .node-layout-builder-form .vertical-tabs textarea,
-.ui-dialog input[type="search"],
-.ui-dialog input[type="file"] {
+.ui-dialog textarea {
   box-sizing: border-box;
   max-width: 100%;
   min-height: 3rem;
@@ -154,6 +161,7 @@
 
 .node-layout-builder-form > .form-actions select,
 .node-layout-builder-form > .field--name-moderation-state select,
+.node-layout-builder-form .vertical-tabs select,
 .ui-dialog select {
   padding-right: calc(2rem - 1px);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath fill='none' stroke-width='1.5' d='M1 1L7 7L13 1' stroke='%23545560'/%3E%3C/svg%3E%0A");

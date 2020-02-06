@@ -97,6 +97,17 @@
   background-image: url('../../../../misc/icons/73b355/location.svg');
 }
 
+/* Ajax spinners */
+.layout-builder__add-section .ajax-progress-throbber .throbber,
+.layout-builder__add-block .ajax-progress-throbber .throbber {
+  background-image: url('../images/spinner-ltr.gif');
+}
+
+[dir="rtl"] .layout-builder__add-section .ajax-progress-throbber .throbber,
+[dir="rtl"] .layout-builder__add-block .ajax-progress-throbber .throbber {
+  background-image: url('../images/spinner-rtl.gif');
+}
+
 /* @todo Remove Umami specific styling in https://www.drupal.org/node/3043228. */
 .layout-builder__message .messages .messages__content {
   background: none;

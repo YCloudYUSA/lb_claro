@@ -106,8 +106,7 @@
   font-size: .875rem;
 }
 
-#drupal-off-canvas input[type="text"],
-#drupal-off-canvas input[type="search"],
+#drupal-off-canvas input:not([type="submit"]),
 #drupal-off-canvas select,
 #drupal-off-canvas textarea {
   background-color: #fff;
@@ -226,6 +225,16 @@
   background: transparent;
   border: 0;
   color: #85bef4;
+}
+
+/* Fix ajax throbber */
+#drupal-off-canvas .ajax-progress-throbber {
+  background-image: url('../images/spinner-ltr.gif');
+  background-color: #fff;
+}
+
+[dir="rtl"] #drupal-off-canvas .ajax-progress-throbber {
+  background-image: url('../images/spinner-rtl.gif');
 }
 
 /**
