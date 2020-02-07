@@ -69,6 +69,10 @@
   padding: 0;
 }
 
+#drupal-off-canvas .ui-widget-content a {
+  color: #222330;
+}
+
 .ui-dialog-off-canvas .layout-builder-add-block,
 .ui-dialog-off-canvas .layout-builder-update-block,
 .ui-dialog-off-canvas .layout-builder-configure-section {
