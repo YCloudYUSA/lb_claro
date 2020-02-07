@@ -110,12 +110,18 @@
   font-size: .875rem;
 }
 
-#drupal-off-canvas input:not([type="submit"]),
+#drupal-off-canvas input[type="text"],
+#drupal-off-canvas input[type="date"],
+#drupal-off-canvas input[type="search"],
+#drupal-off-canvas input[type="file"],
+#drupal-off-canvas input[type="email"],
+#drupal-off-canvas input[type="tel"],
+#drupal-off-canvas input[type="number"],
+#drupal-off-canvas input[type="time"],
 #drupal-off-canvas select,
 #drupal-off-canvas textarea {
   background-color: #fff;
   color: #222330;
-  -webkit-appearance: none;
 }
 
 #drupal-off-canvas .button {
@@ -144,6 +150,13 @@
 #drupal-off-canvas legend {
   font-weight: bold;
   margin-bottom: 1rem;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+#drupal-off-canvas legend span {
+  font-size: inherit;
+  font-family: inherit;
 }
 
 #drupal-off-canvas button,
