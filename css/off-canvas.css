@@ -26,6 +26,8 @@
 
 .ui-dialog.ui-dialog-off-canvas {
   background-color: #222;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: .875rem;
 }
 
 .ui-dialog.ui-dialog-off-canvas .ui-dialog-titlebar {
@@ -36,11 +38,7 @@
 .ui-dialog.ui-dialog-off-canvas .ui-dialog-title {
   font-family: inherit;
   float: none;
-}
-
-.ui-dialog-off-canvas {
-  /* Widen the off-canvas display, so entity forms are usable. */
-  width: 800px !important;
+  font-weight: 600;
 }
 
 /* Remove filter tips, they seem to clutter the off-canvas display. */
@@ -102,12 +100,12 @@
  */
 
 #drupal-off-canvas form {
-  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  font-size: .875rem;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 #drupal-off-canvas label {
-  font-size: .875rem;
+  font-size: inherit;
 }
 
 #drupal-off-canvas input[type="text"],

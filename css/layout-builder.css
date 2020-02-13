@@ -3,6 +3,11 @@
  * Styles for making layout builder look more like Claro.
  */
 
+.ui-dialog-off-canvas {
+  /* Widen the off-canvas display, so entity forms are usable. */
+  width: 800px !important;
+}
+
 .layout-builder__add-section {
   background-color: #fff;
   width: 100%;

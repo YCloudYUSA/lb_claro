@@ -3,9 +3,9 @@
  * Form styles for making layout builder and off canvas look more like Claro.
  */
 
-.node-layout-builder-form > .form-actions,
-.node-layout-builder-form > .field--name-moderation-state,
-.node-layout-builder-form .form__item--vertical-tabs,
+.layout-builder-form > .form-actions,
+.layout-builder-form > .field--name-moderation-state,
+.layout-builder-form .form__item--vertical-tabs,
 .media-library-content .form__item--managed-file,
 .media-library-content .views-exposed-form {
   color: #222330;
@@ -17,23 +17,23 @@
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
-.node-layout-builder-form > .form-actions,
-.node-layout-builder-form > .field--name-moderation-state,
-.node-layout-builder-form .form__item--vertical-tabs {
+.layout-builder-form > .form-actions,
+.layout-builder-form > .field--name-moderation-state,
+.layout-builder-form .form__item--vertical-tabs {
   margin: 1.5rem 2rem;
 }
 
-.node-layout-builder-form > .form-actions,
-.node-layout-builder-form > .field--name-moderation-state {
+.layout-builder-form > .form-actions,
+.layout-builder-form > .field--name-moderation-state {
   text-align: center;
 }
 
-.node-layout-builder-form > .form-actions {
+.layout-builder-form > .form-actions {
   padding-top: 0;
 }
 
-.node-layout-builder-form > .form-actions .button,
-.node-layout-builder-form > .field--name-moderation-state .button,
+.layout-builder-form > .form-actions .button,
+.layout-builder-form > .field--name-moderation-state .button,
 .ui-dialog .button {
   display: inline-block;
   margin: 1rem 0.75rem 1rem 0;
@@ -55,43 +55,43 @@
   font-family: inherit;
 }
 
-.node-layout-builder-form > .form-actions *:focus,
-.node-layout-builder-form > .field--name-moderation-state *:focus,
+.layout-builder-form > .form-actions *:focus,
+.layout-builder-form > .field--name-moderation-state *:focus,
 .ui-dialog *:focus {
   outline: 2px dotted transparent;
   box-shadow: 0 0 0 2px #fff, 0 0 0 5px #26a769;
 }
 
-.node-layout-builder-form > .form-actions .button:hover,
-.node-layout-builder-form > .field--name-moderation-state .button:hover,
+.layout-builder-form > .form-actions .button:hover,
+.layout-builder-form > .field--name-moderation-state .button:hover,
 .ui-dialog .button:hover {
   text-decoration: none;
   background-color: #c2c3ca;
 }
 
-.node-layout-builder-form > .form-actions .button:not(:focus),
-.node-layout-builder-form > .field--name-moderation-state .button:not(:focus),
+.layout-builder-form > .form-actions .button:not(:focus),
+.layout-builder-form > .field--name-moderation-state .button:not(:focus),
 .ui-dialog .button:not(:focus) {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
-.node-layout-builder-form > .form-actions .button--primary,
-.node-layout-builder-form > .field--name-moderation-state .button--primary,
+.layout-builder-form > .form-actions .button--primary,
+.layout-builder-form > .field--name-moderation-state .button--primary,
 .ui-dialog .button--primary {
   color: #fff;
   background-color: #003cc5;
 }
 
-.node-layout-builder-form > .form-actions .button--primary:hover,
-.node-layout-builder-form > .field--name-moderation-state .button--primary:hover,
+.layout-builder-form > .form-actions .button--primary:hover,
+.layout-builder-form > .field--name-moderation-state .button--primary:hover,
 .ui-dialog .button--primary:hover {
   color: #fff;
   background-color: #0036b1;
 }
 
-.node-layout-builder-form > .form-actions label,
-.node-layout-builder-form > .field--name-moderation-state label,
-.node-layout-builder-form .vertical-tabs label,
+.layout-builder-form > .form-actions label,
+.layout-builder-form > .field--name-moderation-state label,
+.layout-builder-form .vertical-tabs label,
 .ui-dialog label {
   color: inherit;
   display: table;
@@ -103,28 +103,28 @@
   font-family: inherit;
 }
 
-.node-layout-builder-form > .form-actions label.option,
-.node-layout-builder-form > .field--name-moderation-state label.option,
-.node-layout-builder-form .vertical-tabs label.option,
+.layout-builder-form > .form-actions label.option,
+.layout-builder-form > .field--name-moderation-state label.option,
+.layout-builder-form .vertical-tabs label.option,
 .ui-dialog label.option {
   display: inline;
   font-weight: normal;
 }
 
-.node-layout-builder-form > .form-actions label.option::before,
-.node-layout-builder-form > .field--name-moderation-state label.option::before,
-.node-layout-builder-form .vertical-tabs label.option::before,
+.layout-builder-form > .form-actions label.option::before,
+.layout-builder-form > .field--name-moderation-state label.option::before,
+.layout-builder-form .vertical-tabs label.option::before,
 .ui-dialog label.option::before,
-.node-layout-builder-form > .form-actions label.option::after,
-.node-layout-builder-form > .field--name-moderation-state label.option::after,
-.node-layout-builder-form .vertical-tabs label.option::after,
+.layout-builder-form > .form-actions label.option::after,
+.layout-builder-form > .field--name-moderation-state label.option::after,
+.layout-builder-form .vertical-tabs label.option::after,
 .ui-dialog label.option::after {
   display: none;
 }
 
-.node-layout-builder-form > .form-actions input[type="text"],
-.node-layout-builder-form > .field--name-moderation-state input[type="text"],
-.node-layout-builder-form .vertical-tabs input[type="text"],
+.layout-builder-form > .form-actions input[type="text"],
+.layout-builder-form > .field--name-moderation-state input[type="text"],
+.layout-builder-form .vertical-tabs input[type="text"],
 .ui-dialog input[type="text"],
 .ui-dialog input[type="date"],
 .ui-dialog input[type="search"],
@@ -133,13 +133,13 @@
 .ui-dialog input[type="tel"],
 .ui-dialog input[type="number"],
 .ui-dialog input[type="time"],
-.node-layout-builder-form > .form-actions select,
-.node-layout-builder-form > .field--name-moderation-state select,
-.node-layout-builder-form .vertical-tabs select,
+.layout-builder-form > .form-actions select,
+.layout-builder-form > .field--name-moderation-state select,
+.layout-builder-form .vertical-tabs select,
 .ui-dialog select,
-.node-layout-builder-form > .form-actions textarea,
-.node-layout-builder-form > .field--name-moderation-state textarea,
-.node-layout-builder-form .vertical-tabs textarea,
+.layout-builder-form > .form-actions textarea,
+.layout-builder-form > .field--name-moderation-state textarea,
+.layout-builder-form .vertical-tabs textarea,
 .ui-dialog textarea {
   box-sizing: border-box;
   max-width: 100%;
@@ -159,9 +159,9 @@
   width: auto;
 }
 
-.node-layout-builder-form > .form-actions select,
-.node-layout-builder-form > .field--name-moderation-state select,
-.node-layout-builder-form .vertical-tabs select,
+.layout-builder-form > .form-actions select,
+.layout-builder-form > .field--name-moderation-state select,
+.layout-builder-form .vertical-tabs select,
 .ui-dialog select {
   padding-right: calc(2rem - 1px);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3E%3Cpath fill='none' stroke-width='1.5' d='M1 1L7 7L13 1' stroke='%23545560'/%3E%3C/svg%3E%0A");
@@ -170,8 +170,8 @@
   background-size: 2.75rem 0.5625rem;
 }
 
-.node-layout-builder-form > .form-actions input[type="checkbox"],
-.node-layout-builder-form .vertical-tabs input[type="checkbox"],
+.layout-builder-form > .form-actions input[type="checkbox"],
+.layout-builder-form .vertical-tabs input[type="checkbox"],
 .ui-dialog input[type="checkbox"] {
   display: inline-block;
   box-sizing: border-box;
@@ -191,37 +191,37 @@
   position: static;
 }
 
-.node-layout-builder-form > .form-actions input[type="checkbox"]:active,
-.node-layout-builder-form > .form-actions input[type="checkbox"]:hover,
-.node-layout-builder-form .vertical-tabs input[type="checkbox"]:active,
-.node-layout-builder-form .vertical-tabs input[type="checkbox"]:hover,
+.layout-builder-form > .form-actions input[type="checkbox"]:active,
+.layout-builder-form > .form-actions input[type="checkbox"]:hover,
+.layout-builder-form .vertical-tabs input[type="checkbox"]:active,
+.layout-builder-form .vertical-tabs input[type="checkbox"]:hover,
 .ui-dialog input[type="checkbox"]:active,
 .ui-dialog input[type="checkbox"]:hover {
   border-color: #222330;
   box-shadow: inset 0 0 0 1px #222330;
 }
 
-.node-layout-builder-form > .form-actions input[type="checkbox"]:focus:active,
-.node-layout-builder-form > .form-actions input[type="checkbox"]:focus:hover,
-.node-layout-builder-form .vertical-tabs input[type="checkbox"]:focus:active,
-.node-layout-builder-form .vertical-tabs input[type="checkbox"]:focus:hover,
+.layout-builder-form > .form-actions input[type="checkbox"]:focus:active,
+.layout-builder-form > .form-actions input[type="checkbox"]:focus:hover,
+.layout-builder-form .vertical-tabs input[type="checkbox"]:focus:active,
+.layout-builder-form .vertical-tabs input[type="checkbox"]:focus:hover,
 .ui-dialog input[type="checkbox"]:focus:active,
 .ui-dialog input[type="checkbox"]:focus:hover {
   box-shadow: 0 0 0 2px #fff, 0 0 0 5px #26a769, inset 0 0 0 1px #222330;
 }
 
-.node-layout-builder-form > .form-actions input[type="checkbox"]:checked,
-.node-layout-builder-form .vertical-tabs input[type="checkbox"]:checked,
+.layout-builder-form > .form-actions input[type="checkbox"]:checked,
+.layout-builder-form .vertical-tabs input[type="checkbox"]:checked,
 .ui-dialog input[type="checkbox"]:checked {
   border-color: #003cc5;
   background-color: #003cc5;
   background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.7949219,7.095703 6.1816406,9.601563 12.205078,3.2753906 13.689453,4.8359375 6.1816406,12.724609 2.3105469,8.65625 Z' fill='white'/%3E%3C/svg%3E");
 }
 
-.node-layout-builder-form > .form-actions input[type="checkbox"]:checked:active,
-.node-layout-builder-form > .form-actions input[type="checkbox"]:checked:hover,
-.node-layout-builder-form .vertical-tabs input[type="checkbox"]:checked:active,
-.node-layout-builder-form .vertical-tabs input[type="checkbox"]:checked:hover,
+.layout-builder-form > .form-actions input[type="checkbox"]:checked:active,
+.layout-builder-form > .form-actions input[type="checkbox"]:checked:hover,
+.layout-builder-form .vertical-tabs input[type="checkbox"]:checked:active,
+.layout-builder-form .vertical-tabs input[type="checkbox"]:checked:hover,
 .ui-dialog input[type="checkbox"]:checked:active,
 .ui-dialog input[type="checkbox"]:checked:hover {
   border-color: #222330;

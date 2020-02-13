@@ -5,15 +5,17 @@
  * Hooks for LB Claro module.
  */
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Asset\AttachedAssetsInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\layout_builder\Form\OverridesEntityForm;
+use Drupal\layout_builder\Form\DefaultsEntityForm;
 
 /**
  * Implements hook_form_alter().
  */
 function lb_claro_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form_state->getFormObject() instanceof OverridesEntityForm) {
+  $form_object = $form_state->getFormObject();
+  if ($form_object instanceof OverridesEntityForm || $form_object instanceof DefaultsEntityForm) {
     $form['#attached']['library'][] = 'lb_claro/layout_builder';
     $form['#attached']['library'][] = 'claro/claro.drupal.dialog';
     $form['#attached']['library'][] = 'claro/media_library.theme';
@@ -31,7 +33,7 @@ function lb_claro_css_alter(&$css, AttachedAssetsInterface $assets) {
   $stable_theme_css = drupal_get_path('theme', 'stable') . '/css';
 
   // Only target layout builder specific pages.
-  if (preg_match('/^(layout_builder\.|^overrides\.([^.]+\.)?)/', $route_name)) {
+  if (preg_match('/^(layout_builder\.([^.]+\.)?)/', $route_name)) {
     // Remove very specific CSS files that this module is overriding.
     unset($css[$stable_theme_css . '/layout_builder/layout-builder.css']);
     unset($css[$stable_theme_css . '/core/dialog/off-canvas.reset.css']);
@@ -39,7 +41,7 @@ function lb_claro_css_alter(&$css, AttachedAssetsInterface $assets) {
     unset($css[$stable_theme_css . '/core/dialog/off-canvas.table.css']);
     unset($css[$stable_theme_css . '/core/dialog/off-canvas.form.css']);
     unset($css[$stable_theme_css . '/core/dialog/off-canvas.button.css']);
-    unset($css['assets/vendor/jquery.ui/themes/base/dialog.cs']);
+    unset($css['assets/vendor/jquery.ui/themes/base/dialog.css']);
   }
 }
 
