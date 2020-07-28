@@ -41,7 +41,8 @@ function lb_claro_css_alter(&$css, AttachedAssetsInterface $assets) {
     unset($css[$stable_theme_css . '/core/dialog/off-canvas.table.css']);
     unset($css[$stable_theme_css . '/core/dialog/off-canvas.form.css']);
     unset($css[$stable_theme_css . '/core/dialog/off-canvas.button.css']);
-    unset($css['assets/vendor/jquery.ui/themes/base/dialog.css']);
+    unset($css['core/assets/vendor/jquery.ui/themes/base/dialog.css']);
+    unset($css['core/assets/vendor/jquery.ui/themes/base/theme.css']);
   }
 }
 

@@ -111,6 +111,10 @@
   font-weight: normal;
 }
 
+.ui-dialog .form-item {
+  padding-bottom: 1rem;
+}
+
 .layout-builder-form > .form-actions label.option::before,
 .layout-builder-form > .field--name-moderation-state label.option::before,
 .layout-builder-form .vertical-tabs label.option::before,
