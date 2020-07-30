@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update hooks for the module
+ */
+
+/**
+ * Adds settings object.
+ */
+function lb_claro_update_8001() {
+  $factory = \Drupal::configFactory();
+  $config = $factory->getEditable('lb_claro.settings');
+  $config->set('off_canvas_initial_width', 800)->save(TRUE);
+}

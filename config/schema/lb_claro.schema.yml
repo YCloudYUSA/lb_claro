@@ -1,0 +1,7 @@
+lb_claro.settings:
+  type: config_object
+  label: 'LB Claro settings'
+  mapping:
+    off_canvas_initial_width:
+      type: integer
+      label: 'Initial width'
