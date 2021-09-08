@@ -81,7 +81,11 @@
   text-align: center;
 }
 
-.layout-builder .layout-builder-block [tabindex='-1'] {
+.layout-builder .layout-builder-block {
+  cursor: move;
+}
+
+.layout-builder .layout-builder-block [tabindex="-1"] {
   pointer-events: none;
 }
 
