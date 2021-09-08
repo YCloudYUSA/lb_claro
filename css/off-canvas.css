@@ -30,6 +30,10 @@
   font-size: .875rem;
 }
 
+.ui-dialog.ui-dialog-off-canvas > .ui-dialog-content {
+  color: #fff;
+}
+
 .ui-dialog.ui-dialog-off-canvas .ui-dialog-titlebar {
   background-color: #111;
   position: relative;
@@ -54,6 +58,12 @@
 .ui-dialog-off-canvas .link {
   text-decoration: none;
   color: #85bef4;
+}
+
+.ui-dialog-off-canvas a:hover,
+.ui-dialog-off-canvas .link:hover {
+  text-decoration: none;
+  color: #fff;
 }
 
 .ui-dialog-off-canvas a:focus,
@@ -168,6 +178,7 @@
 #drupal-off-canvas .ui-dialog-content {
   font-family: inherit;
   background-color: inherit;
+  color: inherit;
 }
 
 #drupal-off-canvas summary {
@@ -289,6 +300,9 @@
   background: transparent;
   border: 0;
   color: #85bef4;
+}
+#drupal-off-canvas .link:hover {
+  color: #fff;
 }
 
 /* Fix ajax throbber */
