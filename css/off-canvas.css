@@ -174,6 +174,55 @@
   font-weight: bold;
 }
 
+/** Make them look like like Claro details */
+#drupal-off-canvas details > summary {
+  position: relative;
+  box-sizing: border-box;
+  padding-left: 3rem;
+  cursor: pointer;
+  transition: background-color 0.12s ease-in-out;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+#drupal-off-canvas details > summary::-webkit-details-marker {
+  display: none;
+}
+
+#drupal-off-canvas details > summary::before {
+  position: absolute;
+  top: 50%;
+  left: 1.25rem; /* LTR */
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-top: -0.5rem;
+  content: "";
+  transition: transform 0.12s ease-in 0s;
+  transform: rotate(90deg); /* LTR */
+  text-align: center;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3e%3cpath d='M5.21 1.314L3.79 2.723l5.302 5.353-5.303 5.354 1.422 1.408 6.697-6.762z' fill='%23ffffff'/%3e%3c/svg%3e");
+  background-size: contain;
+}
+
+#drupal-off-canvas details > summary:hover::before,
+#drupal-off-canvas details > summary:hover:focus::before,
+#drupal-off-canvas details[open] > summary:hover:focus::before,
+#drupal-off-canvas details[open] > summary:hover::before {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3e%3cpath d='M5.21 1.314L3.79 2.723l5.302 5.353-5.303 5.354 1.422 1.408 6.697-6.762z' fill='%230036B1'/%3e%3c/svg%3e");
+}
+
+#drupal-off-canvas details[open] > summary::before {
+  transform: rotate(-90deg);
+}
+
+#drupal-off-canvas details > summary:hover {
+  color: #003cc5;
+  background-color: #f0f5fd;
+}
+
 /**
  * Reset the width of buttons, full width is not appropriate for a wide
  * off canvas display.
