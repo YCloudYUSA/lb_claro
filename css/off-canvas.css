@@ -306,13 +306,75 @@
 }
 
 /* Fix ajax throbber */
-#drupal-off-canvas .ajax-progress-throbber {
-  background-image: url('../images/spinner-ltr.gif');
-  background-color: #fff;
+#drupal-off-canvas div.ajax-progress-throbber {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  color: #fff;
+  background: transparent;
+  min-height: 2px;
+  padding: 0;
 }
 
-[dir="rtl"] #drupal-off-canvas .ajax-progress-throbber {
-  background-image: url('../images/spinner-rtl.gif');
+#drupal-off-canvas div.ajax-progress-throbber .message {
+  background: #0036b1;
+  padding: 1em;
+  display: block;
+  color: #fff;
+}
+
+#drupal-off-canvas div.ajax-progress-throbber .throbber {
+  animation: throbber 8s ease infinite;
+  position: absolute;
+  height: 2px;
+  display: inline;
+  background-image: none;
+  background-color: #fff;
+  bottom: 0;
+  left: 0;
+}
+
+@keyframes throbber {
+  0% {
+    width: 0;
+  }
+
+  20% {
+    width: 10%;
+  }
+
+  25% {
+    width: 25%;
+  }
+
+  40% {
+    width: 40%;
+  }
+
+  56% {
+    width: 50%;
+  }
+
+  66% {
+    width: 52%;
+  }
+
+  71% {
+    width: 60%;
+  }
+
+  75% {
+    width: 76%;
+  }
+
+  94% {
+    width: 86%;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
 /**
