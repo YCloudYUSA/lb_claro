@@ -15,13 +15,20 @@ use Drupal\layout_builder\Form\DefaultsEntityForm;
  */
 function lb_claro_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $form_object = $form_state->getFormObject();
-  if ($form_object instanceof OverridesEntityForm || $form_object instanceof DefaultsEntityForm) {
+  if ($form_object instanceof OverridesEntityForm || $form_object instanceof DefaultsEntityForm
+    || $form_object->getFormId() === 'layout_layout_builder_form'
+  ) {
     $form['#attached']['library'][] = 'lb_claro/layout_builder';
     $form['#attached']['library'][] = 'claro/claro.drupal.dialog';
     $form['#attached']['library'][] = 'claro/media_library.theme';
     $form['#attached']['library'][] = 'lb_claro/off_canvas';
     $form['#attached']['library'][] = 'lb_claro/media_library';
     $form['#attached']['library'][] = 'lb_claro/entity_forms';
+  }
+
+  // Add layout-builder-form to layout library save form.
+  if ($form_object->getFormId() === 'layout_layout_builder_form') {
+    $form['#attributes']['class'][] = 'layout-builder-form';
   }
 }
 
