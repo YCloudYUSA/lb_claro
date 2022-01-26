@@ -37,19 +37,22 @@ function lb_claro_form_alter(&$form, FormStateInterface $form_state, $form_id) {
  */
 function lb_claro_css_alter(&$css, AttachedAssetsInterface $assets) {
   $route_name = \Drupal::routeMatch()->getRouteName();
+  $theme_handler = \Drupal::service('theme_handler');
 
   // Only target layout builder specific pages.
   if (preg_match('/^(layout_builder\.([^.]+\.)?)/', $route_name)) {
     $stable_themes = ['stable', 'stable9'];
     foreach ($stable_themes as $stable_theme) {
-      $stable_theme_css = drupal_get_path('theme', $stable_theme) . '/css';
-      // Remove very specific CSS files that this module is overriding.
-      unset($css[$stable_theme_css . '/layout_builder/layout-builder.css']);
-      unset($css[$stable_theme_css . '/core/dialog/off-canvas.reset.css']);
-      unset($css[$stable_theme_css . '/core/dialog/off-canvas.base.css']);
-      unset($css[$stable_theme_css . '/core/dialog/off-canvas.table.css']);
-      unset($css[$stable_theme_css . '/core/dialog/off-canvas.form.css']);
-      unset($css[$stable_theme_css . '/core/dialog/off-canvas.button.css']);
+      if($theme_handler->themeExists($stable_theme)) {
+        $stable_theme_css = drupal_get_path('theme', $stable_theme) . '/css';
+        // Remove very specific CSS files that this module is overriding.
+        unset($css[$stable_theme_css . '/layout_builder/layout-builder.css']);
+        unset($css[$stable_theme_css . '/core/dialog/off-canvas.reset.css']);
+        unset($css[$stable_theme_css . '/core/dialog/off-canvas.base.css']);
+        unset($css[$stable_theme_css . '/core/dialog/off-canvas.table.css']);
+        unset($css[$stable_theme_css . '/core/dialog/off-canvas.form.css']);
+        unset($css[$stable_theme_css . '/core/dialog/off-canvas.button.css']);
+      }
     }
     unset($css['core/assets/vendor/jquery.ui/themes/base/dialog.css']);
     unset($css['core/assets/vendor/jquery.ui/themes/base/theme.css']);
