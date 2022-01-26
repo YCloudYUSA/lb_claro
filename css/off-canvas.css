@@ -175,6 +175,14 @@
 /* Simplify details */
 #drupal-off-canvas details,
 #drupal-off-canvas summary,
+#drupal-off-canvas .details-wrapper {
+  margin: 0 -20px;
+  padding: 0 20px;
+  border-width: 0;
+}
+
+#drupal-off-canvas details,
+#drupal-off-canvas summary,
 #drupal-off-canvas .ui-dialog-content {
   font-family: inherit;
   background-color: inherit;
@@ -182,7 +190,29 @@
 }
 
 #drupal-off-canvas summary {
-  font-weight: bold;
+  padding: 10px 20px;
+  transition: all 0.5s ease;
+  text-shadow: none;
+  font-size: 14px;
+}
+
+#drupal-off-canvas summary:hover,
+#drupal-off-canvas summary:focus {
+  background-color: #222;
+}
+
+#drupal-off-canvas details[open] {
+  padding-bottom: 10px;
+}
+
+#drupal-off-canvas details[open] > summary {
+  color: #eee;
+  background-color: #333;
+}
+
+#drupal-off-canvas details[open] > summary:hover {
+  color: #fff;
+  background-color: #222;
 }
 
 /** Make them look like like Claro details */
@@ -196,9 +226,11 @@
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
+  list-style-type: none;
 }
 
-#drupal-off-canvas details > summary::-webkit-details-marker {
+#drupal-off-canvas details > summary::-webkit-details-marker,
+#drupal-off-canvas details > summary::marker {
   display: none;
 }
 
