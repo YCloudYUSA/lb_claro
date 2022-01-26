@@ -32,9 +32,9 @@
   padding-top: 0;
 }
 
-.layout-builder-form > .form-actions .button,
-.layout-builder-form > .field--name-moderation-state .button,
-.ui-dialog .button {
+.layout-builder-form > .form-actions .button:not('.js-hide'),
+.layout-builder-form > .field--name-moderation-state .button:not('.js-hide'),
+.ui-dialog .button:not('.js-hide') {
   display: inline-block;
   margin: 1rem 0.75rem 1rem 0;
   padding: calc(1rem - 1px) calc(1.5rem - 1px);
