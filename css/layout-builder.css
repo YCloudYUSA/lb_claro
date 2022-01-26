@@ -343,3 +343,53 @@
   border-bottom: 1px solid #bfbfbf;
   margin: 0;
 }
+
+/**
+ * CSS for layout overview patch
+ * https://www.drupal.org/project/drupal/issues/3019490.
+*/
+.layout-overview {
+  width: 100%;
+}
+
+.region-title__action {
+  display: inline-block;
+  margin-left: 1em; /* LTR */
+}
+[dir="rtl"] .region-title__action {
+  margin-left: 0;
+  margin-right: 1em;
+}
+
+/* @todo Open an issue to fix .dropbutton-single in off-canvas reset */
+#drupal-off-canvas .layout-overview td .dropbutton-single .dropbutton-widget .dropbutton {
+  width: auto;
+  min-width: 70px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#drupal-off-canvas .layout-overview td .dropbutton-single .dropbutton-widget {
+  padding: 0 3px;
+}
+#drupal-off-canvas .layout-overview td .dropbutton-single .dropbutton-widget .dropbutton a {
+  margin-top: 0;
+  color: #fff;
+}
+#drupal-off-canvas .layout-overview td .dropbutton-single .dropbutton-widget .dropbutton .dropbutton-action {
+  background: transparent;
+}
+
+.layout-overview .new-section {
+  margin-bottom: auto;
+  padding: 2px 0;
+  outline: none;
+}
+
+.links .js-layout-builder-block-link {
+  color: inherit;
+  margin: auto 1rem;
+}
+
+.links .js-layout-builder-block-link:hover {
+  text-decoration: underline;
+}
