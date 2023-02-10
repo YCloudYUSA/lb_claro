@@ -134,6 +134,7 @@
 .ui-dialog input[type="search"],
 .ui-dialog input[type="file"],
 .ui-dialog input[type="email"],
+.ui-dialog input[type="url"],
 .ui-dialog input[type="tel"],
 .ui-dialog input[type="number"],
 .ui-dialog input[type="time"],
