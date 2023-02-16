@@ -2,8 +2,6 @@
 
 namespace Drupal\lb_claro;
 
-use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\OpenOffCanvasDialogCommand;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\TitleResolverInterface;
 use Drupal\Core\Render\MainContent\OffCanvasRenderer as BaseOffCanvasRenderer;
@@ -17,13 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 class OffCanvasRenderer extends BaseOffCanvasRenderer {
 
   /**
-   * Config factory.
-   *
-   * @var \Drupal\Core\Config\ConfigFactoryInterface
-   */
-  private $configFactory;
-
-  /**
    * Constructs a new OffCanvasRenderer.
    *
    * @param \Drupal\Core\Controller\TitleResolverInterface $title_resolver
@@ -32,12 +23,16 @@ class OffCanvasRenderer extends BaseOffCanvasRenderer {
    *   The renderer.
    * @param string $position
    *   (optional) The position to render the off-canvas dialog.
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
    *   Config factory.
    */
-  public function __construct(TitleResolverInterface $title_resolver, RendererInterface $renderer, $position, ConfigFactoryInterface $config_factory) {
+  public function __construct(
+    TitleResolverInterface $title_resolver,
+    RendererInterface $renderer,
+    $position,
+    protected ConfigFactoryInterface $configFactory,
+  ) {
     parent::__construct($title_resolver, $renderer, $position);
-    $this->configFactory = $config_factory;
   }
 
   /**

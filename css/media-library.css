@@ -12,6 +12,8 @@
   overflow: hidden;
   height: 100%;
   cursor: pointer;
+  padding: 10px;
+  background: #ebebeb;
 }
 
 .media-library-content .js-click-to-select-checkbox {
@@ -22,19 +24,12 @@
   display: block;
 }
 
-.media-library-content .media-library-item__preview > div {
-  overflow: hidden;
-  text-align: center;
-  background-color: #ebebeb;
-}
-
-.media-library-content .media-library-item__preview img {
-  height: 180px;
-  -o-object-fit: contain;
+.media-library-content .js-media-library-item img {
   object-fit: contain;
-  -o-object-position: center center;
-  object-position: center center;
-  text-align: center;
+  object-position: center;
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
 }
 
 .media-library-content .media-library-item__attributes {
@@ -96,4 +91,15 @@
 
 .ui-dialog-off-canvas .field--widget-media-library-widget .js-media-library-item .button {
   margin-top: 0;
+}
+
+.media-library-widget-modal .ui-dialog-buttonpane {
+  display: flex;
+  padding: 0 1rem 0 1.75rem;
+}
+
+.media-library-widget-modal .ui-dialog-buttonpane .ui-dialog-buttonset {
+  order: 2;
+  text-align: right;
+  margin-right: 0
 }

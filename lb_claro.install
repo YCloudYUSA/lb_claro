@@ -6,10 +6,8 @@
  */
 
 /**
- * Adds settings object.
+ * Implements hook_update_last_removed().
  */
-function lb_claro_update_8001() {
-  $factory = \Drupal::configFactory();
-  $config = $factory->getEditable('lb_claro.settings');
-  $config->set('off_canvas_initial_width', 800)->save(TRUE);
+function lb_claro_update_last_removed(): int {
+  return 8001;
 }

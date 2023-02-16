@@ -267,12 +267,18 @@
   background-color: #f0f5fd;
 }
 
-/**
- * Reset the width of buttons, full width is not appropriate for a wide
- * off canvas display.
- */
 .ui-dialog-off-canvas #drupal-off-canvas input[type="submit"].button {
+  /**
+   * Reset the width of buttons, full width is not appropriate for a wide
+   * off canvas display.
+   */
   width: auto;
+
+  /* Make button shape look more like Claro. */
+  border-radius: var(--button-border-radius-size);
+  font-weight: 700;
+  line-height: 1rem;
+  padding: calc(var(--space-m) - 1px) calc(var(--space-l) - 1px);
 }
 
 .ui-dialog-off-canvas table.field-multiple-table {
@@ -336,18 +342,6 @@
 }
 #drupal-off-canvas .link:hover {
   color: #fff;
-}
-
-/* Fix ajax throbber */
-#drupal-off-canvas div.ajax-progress-throbber {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  color: #fff;
-  background: transparent;
-  min-height: 2px;
-  padding: 0;
 }
 
 #drupal-off-canvas div.ajax-progress-throbber .message {
@@ -425,4 +419,21 @@
 
 .layout-section .layout-builder--layout__region > .block {
   padding: 1.5em !important;
+}
+
+/* Fix for double plus on add custom block button. */
+#drupal-off-canvas-wrapper .inline-block-create-button::before {
+  display: none;
+}
+
+/* Better spacing around filter form. */
+#drupal-off-canvas-wrapper .inline-block-create-button + .js-form-type-search {
+  margin-bottom: 1rem;
+}
+
+/* Fix Ajax throbber after create button. */
+#drupal-off-canvas-wrapper .inline-block-create-button + .ajax-progress-throbber {
+  position: absolute;
+  right: 10px;
+  margin-top: -58px;
 }
