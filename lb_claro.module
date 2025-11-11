@@ -90,17 +90,22 @@ function lb_claro_theme_registry_alter(&$theme_registry): void {
   $claro_path = \Drupal::service('extension.list.theme')->getPath('claro');
 
   // Add media-library templates directly copied from Claro.
-  $theme_registry['views_view__media_library__widget'] = $theme_registry['views_view'];
-  $theme_registry['views_view__media_library__widget']['template'] = 'views-view--media-library';
-  $theme_registry['views_view__media_library__widget']['path'] = $claro_path . '/templates/media-library';
+  // Check if Views module is enabled before accessing views theme hooks.
+  if (isset($theme_registry['views_view'])) {
+    $theme_registry['views_view__media_library__widget'] = $theme_registry['views_view'];
+    $theme_registry['views_view__media_library__widget']['template'] = 'views-view--media-library';
+    $theme_registry['views_view__media_library__widget']['path'] = $claro_path . '/templates/media-library';
 
-  $theme_registry['views_view__media_library__widget_table'] = $theme_registry['views_view'];
-  $theme_registry['views_view__media_library__widget_table']['template'] = 'views-view--media-library';
-  $theme_registry['views_view__media_library__widget_table']['path'] = $claro_path . '/templates/media-library';
+    $theme_registry['views_view__media_library__widget_table'] = $theme_registry['views_view'];
+    $theme_registry['views_view__media_library__widget_table']['template'] = 'views-view--media-library';
+    $theme_registry['views_view__media_library__widget_table']['path'] = $claro_path . '/templates/media-library';
+  }
 
-  $theme_registry['views_view_unformatted__media_library'] = $theme_registry['views_view_unformatted'];
-  $theme_registry['views_view_unformatted__media_library']['template'] = 'views-view-unformatted--media-library';
-  $theme_registry['views_view_unformatted__media_library']['path'] = $claro_path . '/templates/media-library';
+  if (isset($theme_registry['views_view_unformatted'])) {
+    $theme_registry['views_view_unformatted__media_library'] = $theme_registry['views_view_unformatted'];
+    $theme_registry['views_view_unformatted__media_library']['template'] = 'views-view-unformatted--media-library';
+    $theme_registry['views_view_unformatted__media_library']['path'] = $claro_path . '/templates/media-library';
+  }
 
   $theme_registry['media_library_wrapper']['template'] = 'media-library-wrapper';
   $theme_registry['media_library_wrapper']['path'] = $claro_path . '/templates/classy/media-library';
