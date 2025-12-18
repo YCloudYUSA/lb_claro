@@ -1,12 +1,12 @@
 {
-    "name": "ycloudyusa/lb_claro",
-    "type": "drupal-module",
-    "description": "Attempts to match Layout Builder styles with Claro admin theme.",
-    "license": "GPL-2.0-or-later",
-    "require": {
-        "drupal/core": "^10 || ^11"
-    },
-    "replace": {
-        "drupal/lb_claro": "self.version"
-    }
+  "name": "ycloudyusa/lb_claro",
+  "type": "drupal-module",
+  "description": "Attempts to match Layout Builder styles with Claro admin theme.",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/core": "^10 || ^11"
+  },
+  "replace": {
+    "drupal/lb_claro": "self.version"
+  }
 }

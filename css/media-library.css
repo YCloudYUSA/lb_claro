@@ -8,6 +8,17 @@
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
+/* Fix flex overflow - content should take remaining space, not 100% width */
+.media-library-wrapper {
+  max-width: 100%;
+}
+
+.media-library-wrapper .media-library-content {
+  width: auto;
+  flex: 1;
+  min-width: 0;
+}
+
 .media-library-content .js-click-to-select-trigger {
   overflow: hidden;
   height: 100%;
@@ -32,6 +43,40 @@
   width: 100%;
 }
 
+.media-library-content .js-media-library-item video {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 11.25rem;
+}
+
+/* Grid item sizing for media library */
+.media-library-content .media-library-item--grid {
+  width: 50%;
+  min-width: 12.5rem;
+  box-sizing: border-box;
+  padding: 0.5rem;
+}
+
+@media screen and (min-width: 45em) {
+  .media-library-widget-modal .media-library-item--grid {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 60em) {
+  .media-library-widget-modal .media-library-item--grid {
+    width: 33.3%;
+  }
+}
+
+/* Video field container */
+.media-library-content .field-media-local-video {
+  overflow: hidden;
+  text-align: center;
+  background-color: #ebebeb;
+  max-height: 11.25rem;
+}
+
 .media-library-content .media-library-item__attributes {
   max-height: 34px;
   bottom: 10px;
@@ -39,15 +84,25 @@
 
 .media-library-content .views-exposed-form {
   margin-top: 1rem;
-  display: flex;
 }
 
-.media-library-content .views-exposed-form .form__item {
+.media-library-content .views-exposed-form .exposed-form-flex-wrapper {
+  max-width: 100%;
+}
+
+.media-library-content .views-exposed-form .exposed-form-flex-wrapper > div {
+  flex-wrap: nowrap;
+}
+
+.media-library-content .views-exposed-form .form-item {
   margin-right: .5rem;
+  margin-bottom: 0;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
-.media-library-content .views-exposed-form .button {
-  margin-top: 1.6rem;
+.media-library-content .views-exposed-form .form-actions {
+  flex-shrink: 0;
   margin-bottom: 0;
 }
 
