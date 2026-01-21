@@ -312,6 +312,33 @@
 }
 
 /* Dialog fixes */
+
+/**
+ * Fix CKEditor 5 balloon panel positioning in Layout Builder dialogs.
+ * The balloon position calculation fails in dialog context, positioning it at -99999px.
+ * @see https://www.drupal.org/project/drupal/issues/3351603
+ * @see https://www.drupal.org/project/drupal/issues/3328425
+ */
+.ck-body-wrapper {
+  --ck-z-panel: 10000;
+}
+.ui-dialog .ck-body-wrapper .ck-balloon-panel,
+.ck-body-wrapper .ck-balloon-panel {
+  z-index: 10000 !important;
+}
+/* Force balloon to use fixed positioning relative to viewport in dialogs */
+.ui-dialog ~ .ck-body-wrapper .ck-balloon-panel {
+  position: fixed !important;
+}
+
+/**
+ * Fix CKEditor 5 sticky panel in dialogs causing click issues.
+ * @see https://www.drupal.org/project/drupal/issues/3312123
+ */
+.ui-dialog .ck-editor__top.ck-reset_all .ck-sticky-panel__content_sticky {
+  position: absolute;
+}
+
 .ui-dialog:not(.ui-dialog-off-canvas) .ui-icon.ui-icon-closethick {
   height: 16px;
   width: 16px;
