@@ -2,6 +2,11 @@ layout_builder:
   css:
     theme:
       css/layout-builder.css: { weight: 1000 }
+  js:
+    js/ckeditor5-balloon-fix.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
 
 off_canvas:
   css:
