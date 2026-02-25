@@ -3,21 +3,19 @@
  * Fix CKEditor 5 balloon positioning in Layout Builder dialogs.
  *
  * The balloon position calculation fails in off-canvas context, positioning it
- * at -99999px. Uses MutationObserver on .ck-body-wrapper to detect when
- * CKEditor repositions the balloon off-screen and corrects it.
+ * at -99999px (absolute). Uses requestAnimationFrame to continuously maintain
+ * correct viewport-relative position while the balloon is visible.
  */
 
 (function (Drupal) {
   'use strict';
 
-  // Guard against correction triggering its own observer callback.
-  let fixInProgress = false;
+  let rafId = null;
 
   /**
    * Returns the CKEditor5 instance for a given editable DOM element.
    *
-   * Uses Drupal.CKEditor5Instances (the correct Drupal API) instead of
-   * the non-existent editable.ckeditorInstance property.
+   * Uses Drupal.CKEditor5Instances (the correct Drupal API).
    */
   function getEditorInstance(editable) {
     if (!Drupal.CKEditor5Instances) return null;
@@ -33,7 +31,7 @@
   }
 
   /**
-   * Returns the bounding rect of the current selection in the editor.
+   * Returns the viewport-relative bounding rect of the current selection.
    */
   function getSelectionRect(editable) {
     const editor = getEditorInstance(editable);
@@ -50,7 +48,7 @@
   }
 
   /**
-   * Corrects the position of an off-screen balloon panel.
+   * Corrects the position of a balloon panel to be visible in the viewport.
    */
   function fixBalloonPosition(panel) {
     const dialog = document.querySelector('.ui-dialog-off-canvas, .ui-dialog');
@@ -76,73 +74,95 @@
     if (top + 250 > vh) top = vh - 270;
     if (top < 10) top = 10;
 
-    fixInProgress = true;
+    // Use fixed positioning so the balloon stays in viewport regardless of scroll.
     panel.style.position = 'fixed';
     panel.style.top = top + 'px';
     panel.style.left = left + 'px';
     panel.style.zIndex = '10000';
-    fixInProgress = false;
   }
 
   /**
-   * Returns true if the balloon panel is rendered off-screen.
+   * Returns true if the balloon panel needs repositioning.
    *
-   * Uses getBoundingClientRect() instead of fragile string comparison
-   * against '-99999px' inline style values.
+   * CKEditor uses position:absolute. In the off-canvas dialog context it
+   * calculates coordinates that place the balloon far below the viewport
+   * (large positive top) or above/left of it (large negative). Both cases
+   * require a fix. We also treat any non-fixed balloon as needing a fix,
+   * since position:absolute is always wrong in the dialog context.
    */
   function isPanelOffScreen(panel) {
+    if (panel.style.position !== 'fixed') return true;
     const rect = panel.getBoundingClientRect();
-    return rect.top < -100 || rect.left < -100;
+    const vh = window.innerHeight;
+    const vw = window.innerWidth;
+    return rect.top < 0 || rect.left < 0 || rect.top > vh - 50 || rect.left > vw - 50;
   }
 
   /**
-   * Handles mutations on .ck-body-wrapper — both class and style changes.
+   * rAF loop: while a dialog with CKEditor is open, continuously correct
+   * any off-screen balloon panels.
    *
-   * CKEditor5 first adds ck-balloon-panel_visible (class change), then
-   * immediately sets top/left via style. Watching both ensures we catch
-   * the final off-screen position regardless of which fires last.
+   * Runs every animation frame (~60fps) but only when there is an active
+   * dialog AND a visible balloon — stops itself otherwise.
    */
-  function handleMutation(mutations) {
-    if (fixInProgress) return;
-    if (!document.querySelector('.ui-dialog-off-canvas, .ui-dialog')) return;
-    mutations.forEach(function (mutation) {
-      const panel = mutation.target;
-      if (
-        panel.classList.contains('ck-balloon-panel') &&
-        panel.classList.contains('ck-balloon-panel_visible') &&
-        !panel.classList.contains('ck-powered-by-balloon') &&
-        isPanelOffScreen(panel)
-      ) {
-        fixBalloonPosition(panel);
-      }
-    });
+  function correctionLoop() {
+    const dialog = document.querySelector('.ui-dialog-off-canvas, .ui-dialog');
+    const panels = document.querySelectorAll('.ck-balloon-panel_visible:not(.ck-powered-by-balloon)');
+
+    if (dialog && panels.length) {
+      panels.forEach(function (panel) {
+        if (isPanelOffScreen(panel)) {
+          fixBalloonPosition(panel);
+        }
+      });
+      // Keep looping while balloon is visible.
+      rafId = requestAnimationFrame(correctionLoop);
+    } else {
+      // No visible balloon or no dialog — stop the loop.
+      rafId = null;
+    }
   }
 
   /**
-   * Attaches a MutationObserver to a .ck-body-wrapper element.
+   * Starts the rAF correction loop if not already running.
+   */
+  function startCorrectionLoop() {
+    if (!rafId) {
+      rafId = requestAnimationFrame(correctionLoop);
+    }
+  }
+
+  /**
+   * Uses MutationObserver to detect when a balloon becomes visible,
+   * then starts the rAF loop to maintain correct positioning.
    */
   function observeCkBodyWrapper(wrapper) {
-    new MutationObserver(handleMutation).observe(wrapper, {
+    new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        const panel = mutation.target;
+        if (
+          panel.classList.contains('ck-balloon-panel') &&
+          panel.classList.contains('ck-balloon-panel_visible') &&
+          !panel.classList.contains('ck-powered-by-balloon')
+        ) {
+          startCorrectionLoop();
+        }
+      });
+    }).observe(wrapper, {
       subtree: true,
       attributes: true,
-      // Watch both class (visibility toggle) and style (position changes).
-      attributeFilter: ['class', 'style'],
+      attributeFilter: ['class'],
     });
   }
 
   /**
-   * Sets up observers for .ck-body-wrapper, including ones added dynamically
-   * after AJAX loads CKEditor in the off-canvas sidebar.
-   *
-   * Called once on initial page load (context === document).
+   * Sets up observers for all .ck-body-wrapper elements, present and future.
+   * Called once on initial page load.
    */
   function setupBodyObserver() {
-    // Observe any .ck-body-wrapper already in the DOM.
     const existing = document.querySelector('.ck-body-wrapper');
     if (existing) observeCkBodyWrapper(existing);
 
-    // Watch for .ck-body-wrapper added later when CKEditor initializes
-    // inside the off-canvas AJAX response.
     new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
         mutation.addedNodes.forEach(function (node) {
@@ -156,9 +176,6 @@
 
   Drupal.behaviors.ckEditor5BalloonFix = {
     attach: function (context, settings) {
-      // Run setup once on initial page load only.
-      // Skipping AJAX sub-contexts because .ck-body-wrapper is always on <body>,
-      // not inside the off-canvas form context.
       if (context === document) {
         setupBodyObserver();
       }
