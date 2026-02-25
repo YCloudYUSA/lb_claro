@@ -3,12 +3,15 @@
  * Fix CKEditor 5 balloon positioning in Layout Builder dialogs.
  *
  * The balloon position calculation fails in off-canvas context, positioning it
- * at -99999px. Uses MutationObserver to detect off-screen balloons and corrects
- * their position using the Drupal CKEditor5Instances API.
+ * at -99999px. Uses MutationObserver on .ck-body-wrapper to detect when
+ * CKEditor repositions the balloon off-screen and corrects it.
  */
 
-(function (Drupal, once) {
+(function (Drupal) {
   'use strict';
+
+  // Guard against correction triggering its own observer callback.
+  let fixInProgress = false;
 
   /**
    * Returns the CKEditor5 instance for a given editable DOM element.
@@ -73,10 +76,12 @@
     if (top + 250 > vh) top = vh - 270;
     if (top < 10) top = 10;
 
+    fixInProgress = true;
     panel.style.position = 'fixed';
     panel.style.top = top + 'px';
     panel.style.left = left + 'px';
     panel.style.zIndex = '10000';
+    fixInProgress = false;
   }
 
   /**
@@ -91,48 +96,73 @@
   }
 
   /**
-   * Attaches a MutationObserver to a .ck-body-wrapper element to watch for
-   * balloon panels becoming visible and off-screen.
+   * Handles mutations on .ck-body-wrapper — both class and style changes.
+   *
+   * CKEditor5 first adds ck-balloon-panel_visible (class change), then
+   * immediately sets top/left via style. Watching both ensures we catch
+   * the final off-screen position regardless of which fires last.
+   */
+  function handleMutation(mutations) {
+    if (fixInProgress) return;
+    if (!document.querySelector('.ui-dialog-off-canvas, .ui-dialog')) return;
+    mutations.forEach(function (mutation) {
+      const panel = mutation.target;
+      if (
+        panel.classList.contains('ck-balloon-panel') &&
+        panel.classList.contains('ck-balloon-panel_visible') &&
+        !panel.classList.contains('ck-powered-by-balloon') &&
+        isPanelOffScreen(panel)
+      ) {
+        fixBalloonPosition(panel);
+      }
+    });
+  }
+
+  /**
+   * Attaches a MutationObserver to a .ck-body-wrapper element.
    */
   function observeCkBodyWrapper(wrapper) {
-    new MutationObserver(function (mutations) {
-      if (!document.querySelector('.ui-dialog-off-canvas, .ui-dialog')) return;
-      mutations.forEach(function (mutation) {
-        const panel = mutation.target;
-        if (
-          panel.classList.contains('ck-balloon-panel') &&
-          panel.classList.contains('ck-balloon-panel_visible') &&
-          !panel.classList.contains('ck-powered-by-balloon') &&
-          isPanelOffScreen(panel)
-        ) {
-          fixBalloonPosition(panel);
-        }
-      });
-    }).observe(wrapper, {
+    new MutationObserver(handleMutation).observe(wrapper, {
       subtree: true,
       attributes: true,
-      attributeFilter: ['class'],
+      // Watch both class (visibility toggle) and style (position changes).
+      attributeFilter: ['class', 'style'],
     });
+  }
+
+  /**
+   * Sets up observers for .ck-body-wrapper, including ones added dynamically
+   * after AJAX loads CKEditor in the off-canvas sidebar.
+   *
+   * Called once on initial page load (context === document).
+   */
+  function setupBodyObserver() {
+    // Observe any .ck-body-wrapper already in the DOM.
+    const existing = document.querySelector('.ck-body-wrapper');
+    if (existing) observeCkBodyWrapper(existing);
+
+    // Watch for .ck-body-wrapper added later when CKEditor initializes
+    // inside the off-canvas AJAX response.
+    new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        mutation.addedNodes.forEach(function (node) {
+          if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('ck-body-wrapper')) {
+            observeCkBodyWrapper(node);
+          }
+        });
+      });
+    }).observe(document.body, { childList: true });
   }
 
   Drupal.behaviors.ckEditor5BalloonFix = {
     attach: function (context, settings) {
-      // Observe .ck-body-wrapper elements already in DOM.
-      once('ck-balloon-fix', '.ck-body-wrapper', context).forEach(observeCkBodyWrapper);
-
-      // Watch for .ck-body-wrapper added later (CKEditor initializes after AJAX).
-      once('ck-balloon-fix-body', 'body').forEach(function (body) {
-        new MutationObserver(function (mutations) {
-          mutations.forEach(function (mutation) {
-            mutation.addedNodes.forEach(function (node) {
-              if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('ck-body-wrapper')) {
-                observeCkBodyWrapper(node);
-              }
-            });
-          });
-        }).observe(body, { childList: true });
-      });
+      // Run setup once on initial page load only.
+      // Skipping AJAX sub-contexts because .ck-body-wrapper is always on <body>,
+      // not inside the off-canvas form context.
+      if (context === document) {
+        setupBodyObserver();
+      }
     },
   };
 
-})(Drupal, once);
+})(Drupal);
