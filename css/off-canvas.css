@@ -421,6 +421,11 @@
   padding: 1.5em !important;
 }
 
+/* Prevent links inside CKEditor editing area from navigating on click. */
+.ui-dialog-off-canvas .ck-editor__editable a {
+  pointer-events: none;
+}
+
 /* Fix for double plus on add custom block button. */
 #drupal-off-canvas-wrapper .inline-block-create-button::before {
   display: none;

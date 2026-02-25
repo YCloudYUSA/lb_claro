@@ -6,7 +6,6 @@ layout_builder:
     js/ckeditor5-balloon-fix.js: {}
   dependencies:
     - core/drupal
-    - core/once
 
 off_canvas:
   css:
